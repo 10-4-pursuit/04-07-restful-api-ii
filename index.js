@@ -29,11 +29,19 @@ app.get('/users/:id', (req, res) => {
     }
 });
 
-app.put('/users', (req, res) => {
-    
+app.put('/users/:id', (req, res) => {
+    const { id } = req.params;
+    const index = users.findIndex(user => user.id == id);
+    if (index !== -1) {
+        const updatedUser = { ...users[index], ...req.body };
+        users[index] = updatedUser;
+        res.json(updatedUser);
+    } else {
+        res.status(404).send({ error: 'User not found' });
+    }
 });
 
-app.delete('/users', (req, res) => {
+app.delete('/users/:id', (req, res) => {
     
 });
 
