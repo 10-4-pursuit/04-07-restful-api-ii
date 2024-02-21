@@ -1,0 +1,20 @@
+{
+  "name": "04-07-restful-api-ii",
+  "version": "1.0.0",
+  "description": "## Objective Enhance your skills in creating RESTful APIs by developing a CRUD interface for a \"User\" resource using Express. This exercise will deepen your understanding of handling different HTTP methods, structuring Express applications, and managing in-memory data.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^6.3.4"
+  }
+}
