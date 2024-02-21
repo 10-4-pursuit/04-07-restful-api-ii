@@ -7,7 +7,7 @@ describe('Customer Resource CRUD Operations', () => {
   it('should create a new customer', async () => {
     const customerData = { name: 'Jane Doe', email: 'jane.doe@example.com', isActive: true };
     const response = await request(app)
-      .post('/customers')
+      .post('/users')
       .send(customerData);
     expect(response.statusCode).toBe(201);
     expect(response.body).toHaveProperty('id');
@@ -15,13 +15,13 @@ describe('Customer Resource CRUD Operations', () => {
   });
 
   it('should list all customers', async () => {
-    const response = await request(app).get('/customers');
+    const response = await request(app).get('/users');
     expect(response.statusCode).toBe(200);
     expect(Array.isArray(response.body)).toBe(true);
   });
 
   it('should fetch a single customer by ID', async () => {
-    const response = await request(app).get(`/customers/${newCustomerId}`);
+    const response = await request(app).get(`/users/${newCustomerId}`);
     expect(response.statusCode).toBe(200);
     expect(response.body).toHaveProperty('id', newCustomerId);
   });
@@ -29,7 +29,7 @@ describe('Customer Resource CRUD Operations', () => {
   it('should update a customer', async () => {
     const updatedCustomerData = { name: 'John Doe Updated', email: 'johnupdated@example.com', isActive: false };
     const response = await request(app)
-      .put(`/customers/${newCustomerId}`)
+      .put(`/users/${newCustomerId}`)
       .send(updatedCustomerData);
     expect(response.statusCode).toBe(200);
     expect(response.body.name).toEqual(updatedCustomerData.name);
@@ -37,8 +37,8 @@ describe('Customer Resource CRUD Operations', () => {
   });
 
   it('should delete a customer', async () => {
-    const response = await request(app).delete(`/customers/${newCustomerId}`);
+    const response = await request(app).delete(`/users/${newCustomerId}`);
     expect(response.statusCode).toBe(200);
-    expect(response.text).toContain('Customer successfully deleted');
+    expect(response.text).toContain('User successfully deleted');
   });
 });
