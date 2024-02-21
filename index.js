@@ -42,7 +42,14 @@ app.put('/users/:id', (req, res) => {
 });
 
 app.delete('/users/:id', (req, res) => {
-    
+    const { id } = req.params;
+    const index = users.findIndex(user => user.id == id);
+    if (index !== -1) {
+        users.splice(index, 1);
+        res.status(200).send({ message: 'User successfully deleted' })
+    } else {
+        res.status(404).send({ error: 'User not found' })
+    }
 });
 
 module.exports = app;
