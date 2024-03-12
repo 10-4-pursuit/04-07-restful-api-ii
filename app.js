@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 
-const user = [
+const users = [
   {
     id: 1,  
     username: "user01", 
@@ -23,8 +23,16 @@ const user = [
   }, 
 ]
 
+//middleware
+app.use(express.json());
+
 app.get('/', (req, res) => {
   res.send('Save The Planet')
 })
+
+ //route handler for viewing all books
+ app.get("/users", (req, res) => {
+  res.send(users);
+});
 
 module.exports = app;
