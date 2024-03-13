@@ -84,6 +84,8 @@ app.put("/users/:id", (req, res) => {
 
 });
 
+
+
 // way to validate input
 function validateUserNameAndEmail(user) {
   const schema = Joi.object({
@@ -93,6 +95,21 @@ function validateUserNameAndEmail(user) {
 
  return schema.validate(user);
 }
+
+
+//route handler to delete book
+app.delete('/users/:id', (req, res) => { 
+  const findUser = users.find((user) => user.id === parseInt(req.params.id));
+  if (!findUser) return res.status(404).send("The user was not found");
+  
+
+  const index = users.indexOf(findUser); 
+  users.splice(index, 1);
+
+  res.status(200).send('User successfully deleted')
+
+
+})
 
 
 module.exports = app;
