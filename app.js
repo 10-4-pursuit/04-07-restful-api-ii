@@ -59,12 +59,29 @@ app.get('/', (req, res) => {
     id: users.length + 1,
     username: req.body.username,
     email: req.body.email,
-    isactive: isActiveAlwaysFalse
+    isActive: isActiveAlwaysFalse
   };
 
   users.push(user);
 
   res.status(201).send(user); 
+});
+
+// //route handler for updating a user
+app.put("/users/:id", (req, res) => {
+  const findUser = users.find((user) => user.id === parseInt(req.params.id));
+  if (!findUser) {
+    res.status(404).send("The user was not found");
+    return
+  }
+
+  findUser.username = req.body.username
+  findUser.email = req.body.email
+  findUser.isActive = req.body.isActive
+
+
+  res.send(findUser); 
+
 });
 
 // way to validate input
